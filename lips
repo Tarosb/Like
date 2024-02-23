@@ -1,0 +1,56 @@
+# Installieren Sie die OpenCV-Bibliothek mit pip:
+# pip install opencv-python
+
+# Importieren Sie die OpenCV-Bibliothek
+import cv2
+
+# Funktion zum Laden und Anzeigen eines Bildes
+def bildAnzeigen(dateipfad):
+    # Laden Sie das Bild von der angegebenen Datei
+    bild = cv2.imread(dateipfad)
+
+    # Überprüfen Sie, ob das Bild erfolgreich geladen wurde
+    if bild is not None:
+        # Anzeigen des Originalbildes
+        cv2.imshow('Originalbild', bild)
+        cv2.waitKey(0)  # Warten Sie, bis eine Taste gedrückt wird
+        cv2.destroyAllWindows()  # Schließen Sie das Fenster
+
+    else:
+        print('Fehler beim Laden des Bildes.')
+
+# Funktion zum Konvertieren eines Bildes in Graustufen
+def bildInGraustufenKonvertieren(dateipfad):
+    # Laden Sie das Bild von der angegebenen Datei in Graustufen
+    graustufenBild = cv2.imread(dateipfad, cv2.IMREAD_GRAYSCALE)
+
+    # Überprüfen Sie, ob das Bild erfolgreich geladen wurde
+    if graustufenBild is not None:
+        # Anzeigen des Graustufenbildes
+        cv2.imshow('Graustufenbild', graustufenBild)
+        cv2.waitKey(0)  # Warten Sie, bis eine Taste gedrückt wird
+        cv2.destroyAllWindows()  # Schließen Sie das Fenster
+
+    else:
+        print('Fehler beim Laden des Bildes.')
+
+# Funktion zum Erkennen von Kanten in einem Bild
+def kantenErkennung(dateipfad):
+    # Laden Sie das Bild von der angegebenen Datei
+    bild = cv2.imread(dateipfad)
+
+    # Konvertieren Sie das Bild in Graustufen
+    graustufenBild = cv2.cvtColor(bild, cv2.COLOR_BGR2GRAY)
+
+    # Führen Sie die Kanten-Erkennung mit dem Canny-Algorithmus durch
+    kantenBild = cv2.Canny(graustufenBild, 50, 150)
+
+    # Anzeigen des Kantenbildes
+    cv2.imshow('Kantenbild', kantenBild)
+    cv2.waitKey(0)  # Warten Sie, bis eine Taste gedrückt wird
+    cv2.destroyAllWindows()  # Schließen Sie das Fenster
+
+# Beispielaufrufe der Bildverarbeitungsfunktionen
+bildAnzeigen('pfad/zum/bild.jpg')
+bildInGraustufenKonvertieren('pfad/zum/bild.jpg')
+kantenErkennung('pfad/zum/bild.jpg')
